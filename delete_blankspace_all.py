@@ -19,7 +19,7 @@ def main():
         if pqweokperoqwk in obj.name:  # If blank space in wav files NEED TO ADD/CHANGE.
             new_file = obj.other  # replace OR EDIT with fixed file
 
-    ak.wwise.core.undo.end_group("Delete Blankspace")
+    ak.wwise.core.undo.end_group("Delete Blankspace In All")
 
     ak.disconnect()
 
