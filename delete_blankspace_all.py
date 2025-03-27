@@ -11,7 +11,8 @@ def main():
     query = WaqlQuery()
     query.from_project()  # This will  get every object in the Wwise project.
 
-    wwise_objects = ak.wwise.core.object.get(query)
+    wwise_objects = ak.wwise.core.object.get(
+                    query)  # maybe try to get only audio files and not objects (sound containers?)
 
     ak.wwise.core.undo.begin_group()
 
