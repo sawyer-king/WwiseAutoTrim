@@ -6,7 +6,7 @@ from pywwise import *
 def main():
 
 
-# stuff goes here.
+    # stuff goes here.
 
 
 if __name__ == "__main__":
