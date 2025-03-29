@@ -5,7 +5,7 @@ from pywwise import *
 
 def main():
     """Check all .wav files in use in the Wwise project for blank space at the beginning or end of the file and
-    remove that blank space."""
+    remove that blank space.(FIX DOCUSTRING)"""
     ak = new_waapi_connection()
 
     query = WaqlQuery()
@@ -20,7 +20,7 @@ def main():
         if pqweokperoqwk in obj.name:  # If blank space in wav files NEED TO ADD/CHANGE.
             new_file = obj.other  # replace OR EDIT with fixed file
 
-    ak.wwise.core.undo.end_group("Delete Blankspace In All")
+    ak.wwise.core.undo.end_group("Delete Blankspace In All") # figure out where this display name is for
 
     ak.disconnect()
 
