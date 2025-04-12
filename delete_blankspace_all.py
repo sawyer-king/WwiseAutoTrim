@@ -20,7 +20,7 @@ def main():
         if obj.type == Sound:
             if oiawjd in obj.name:
                 new_frames = audioop.lin2lin(frames, old_width, 4) # If blank space in wav files NEED TO ADD/CHANGE. https://stackoverflow.com/questions/44812553/how-to-convert-a-24-bit-wav-file-to-16-or-32-bit-files-in-python3
-                new_frames = audioop.bias(new_frames, 4, 128)#https://docs.python.org/3.10/library/audioop.html
+                new_frames = audioop.bias(new_frames, 4, 128)#this 128 may only be needed when converting 8bit files idk here is the docs: https://docs.python.org/3.10/library/audioop.html
 
                 new_file = obj.other  # replace OR EDIT with fixed file
 
