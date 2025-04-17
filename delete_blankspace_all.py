@@ -1,4 +1,5 @@
 # Copyright 2025 Sawyer King
+import audioop
 
 from pywwise import *
 
@@ -19,12 +20,13 @@ def main():
     for obj in wwise_objects:
         if obj.type == Sound:
             if oiawjd in obj.name:
-                new_frames = audioop.lin2lin(frames, old_width, 4) # If blank space in wav files NEED TO ADD/CHANGE. https://stackoverflow.com/questions/44812553/how-to-convert-a-24-bit-wav-file-to-16-or-32-bit-files-in-python3
+                old_bit_depth = wavFile.getsampwidth() #returns value of 1-4 (x8 for bit depth if needed) need to get bit depth before I can change it using lin2lin
+                new_frames = audioop.lin2lin(frames, old_bit_depth, 4) # If blank space in wav files NEED TO ADD/CHANGE. https://stackoverflow.com/questions/44812553/how-to-convert-a-24-bit-wav-file-to-16-or-32-bit-files-in-python3
                 new_frames = audioop.bias(new_frames, 4, 128)#this 128 may only be needed when converting 8bit files idk here is the docs: https://docs.python.org/3.10/library/audioop.html
 
                 new_file = obj.other  # replace OR EDIT with fixed file
 
-    ak.wwise.core.undo.end_group("Delete Blankspace In All") # figure out where this display name is for
+    ak.wwise.core.undo.end_group("Delete Blankspace In All wav files") # figure out where this display name is for
 
     ak.disconnect()
 

@@ -10,7 +10,7 @@ def main():
 
     # stuff goes here.
 
-    ak.wwise.core.undo.end_group("Delete Blankspace In Selected")
+    ak.wwise.core.undo.end_group("Delete Blankspace In Selected wav files")
 
     ak.disconnect()
 
