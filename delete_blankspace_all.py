@@ -1,4 +1,5 @@
 # Copyright 2025 Sawyer King
+import wave
 import audioop
 
 from pywwise import *
@@ -21,6 +22,17 @@ def main():
         if obj.type == Sound:
             if oiawjd in obj.name:
                 old_bit_depth = wavFile.getsampwidth() #returns value of 1-4 (x8 for bit depth if needed) need to get bit depth before I can change it using lin2lin
+
+                wav = wave.open("piano2.wav") #https://stackoverflow.com/questions/27895186/what-type-of-file-is-the-sound-fragment-parameter-for-audioop
+                print(audioop.avg(wav.readframes(wav.getnframes()), wav.getsampwidth()))
+                wav.rewind()
+                print(audioop.max(wav.readframes(wav.getnframes()), wav.getsampwidth()))
+                #wav = wave.open("piano2.wav")
+                #string_wav = wav.readframes(wav.getnframes())
+                #print(audioop.avg(string_wav, wav.getsampwidth()))
+                # wav.rewind()
+                #print(audioop.max(string_wav, wav.getsampwidth()))
+
                 new_frames = audioop.lin2lin(frames, old_bit_depth, 4) # If blank space in wav files NEED TO ADD/CHANGE. https://stackoverflow.com/questions/44812553/how-to-convert-a-24-bit-wav-file-to-16-or-32-bit-files-in-python3
                 new_frames = audioop.bias(new_frames, 4, 128)#this 128 may only be needed when converting 8bit files idk here is the docs: https://docs.python.org/3.10/library/audioop.html
 
