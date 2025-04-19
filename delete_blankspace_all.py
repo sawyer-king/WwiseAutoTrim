@@ -38,6 +38,11 @@ def main():
 
                 new_file = obj.other  # replace OR EDIT with fixed file
 
+                modified_files_list[i] = new_file #make a list of all modified files to be printed in a display to the user
+                i += 1
+
+    print(modified_files_list)
+
     ak.wwise.core.undo.end_group("Delete Blankspace In All wav files") # figure out where this display name is for
 
     ak.disconnect()
