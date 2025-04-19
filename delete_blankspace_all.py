@@ -44,7 +44,10 @@ def main():
                 modified_files_list[i] = new_file #make a list of all modified files to be printed in a display to the user
                 i += 1
 
-    print(modified_files_list) # also think about adding file name + folder path + Wwise actor mixer structure path
+    if i > 0:
+        print(modified_files_list) # also think about adding file name + folder path + Wwise actor mixer structure path
+    else:
+        print("No files were modified.") #add some display for case where no files were changed
 
     ak.wwise.core.undo.end_group("Delete Blankspace In All wav files") # figure out where this display name is for
 
