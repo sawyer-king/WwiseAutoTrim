@@ -10,7 +10,7 @@ def main():
     remove that blank space.(FIX DOCUSTRING)"""
     ak = new_waapi_connection()
 
-    modified_files_list = [] # may give error idk if i have to declare this as a list of dictionaries?or if python knows
+    modified_files_list = [] # may give error idk if i have to declare this as a list of dictionaries?
 
     query = WaqlQuery()
     query.from_project()  # This will  get every object in the Wwise project.
