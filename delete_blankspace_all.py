@@ -22,10 +22,10 @@ def main():
 
     for obj in wwise_objects:
         if obj.type == Sound:
-            if oiawjd in obj.name:
+            #if Sound == wav?: check if sound file is actually a wav?
                 old_bit_depth = wavFile.getsampwidth() #returns value of 1-4 (x8 for bit depth if needed) need to get bit depth before I can change it using lin2lin
 
-                wav = wave.open("piano2.wav") #https://stackoverflow.com/questions/27895186/what-type-of-file-is-the-sound-fragment-parameter-for-audioop
+                wav = wave.open(f"{obj.name}.wav") #https://stackoverflow.com/questions/27895186/what-type-of-file-is-the-sound-fragment-parameter-for-audioop
                 print(audioop.avg(wav.readframes(wav.getnframes()), wav.getsampwidth()))
                 wav.rewind()
                 print(audioop.max(wav.readframes(wav.getnframes()), wav.getsampwidth()))
