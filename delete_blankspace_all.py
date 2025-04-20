@@ -10,7 +10,7 @@ def main():
     remove that blank space.(FIX DOCUSTRING)"""
     ak = new_waapi_connection()
 
-    modified_files_list = []# may give error idk if i have to declare this as a list of dictionaries?or if python knows
+    modified_files_list = [] # may give error idk if i have to declare this as a list of dictionaries?or if python knows
 
     query = WaqlQuery()
     query.from_project()  # This will  get every object in the Wwise project.
@@ -45,12 +45,11 @@ def main():
                 temp_dict = {'FileName':obj.name, 'Path':obj.path}
                 modified_files_list.append = temp_dict #make a list of all modified files to be printed in a display to the user
             '''
-            
 
     if len(modified_files_list) > 0:
         print(modified_files_list) # also think about adding file name + folder path + Wwise actor mixer structure path
     else:
-        print("No files were modified.") #add some display for case where no files were changed
+        print("No files were modified.") # add some display for case where no files were changed
 
     ak.wwise.core.undo.end_group("Delete Blankspace In All wav files") # figure out where this display name is for
 
