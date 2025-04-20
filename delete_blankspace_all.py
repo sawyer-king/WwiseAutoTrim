@@ -10,6 +10,8 @@ def main():
     remove that blank space.(FIX DOCUSTRING)"""
     ak = new_waapi_connection()
 
+    modified_files_list = [] #may give error idk if i have to declare this as a list of dictionaries? or if python knows
+
     query = WaqlQuery()
     query.from_project()  # This will  get every object in the Wwise project.
 
@@ -41,10 +43,10 @@ def main():
 
                 new_file = obj.other  # replace OR EDIT with fixed file
 
-                modified_files_list[i] = new_file #make a list of all modified files to be printed in a display to the user
-                i += 1
+                temp_dict = {'FileName':new_file, 'Path':obj.path}
+                modified_files_list.append = temp_dict #make a list of all modified files to be printed in a display to the user
 
-    if i > 0:
+    if len(modified_files_list) > 0:
         print(modified_files_list) # also think about adding file name + folder path + Wwise actor mixer structure path
     else:
         print("No files were modified.") #add some display for case where no files were changed
