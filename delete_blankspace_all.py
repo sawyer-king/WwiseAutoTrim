@@ -30,6 +30,11 @@ def main():
             trim_end = num_samples - 1
             trim_begin = 0
 
+            #  FIGURE OUT HOW TO READ (data)
+            #  DO I NEED TO CONVERT TO 32 bit to accurately make trim point
+            #  if 2 0s in a row then that is the trim point lol
+            #  how to use PyWwise to set the trim_begin etc
+
 
             '''
             AudioSource.trim_begin = trim_begin
