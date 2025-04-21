@@ -22,7 +22,7 @@ def main():
         if obj.type == EObjectType.SOUND:
             samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")  # obj.path somehow?
             duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
-            if len(data.shape) == 2:
+            if len(data.shape) == 2:  # idk if this will always return 2 or not?
                 channels = 2
             else:
                 channels = 1
