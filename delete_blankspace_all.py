@@ -21,20 +21,25 @@ def main():
 
     for obj in wwise_objects:
         if obj.type == EObjectType.SOUND:
-            print("its a sound!")
             samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")  # obj.path somehow?
             duration = data.shape[0] / samplerate
-            print(duration)
-            print(data)
+            if len(data.shape) == 2:
+                channels = 2
+            else:
+                channels = 1
+            num_samples = int(data.size / channels)
+            trim_end = num_samples - 1
+            trim_begin = 0
 
-            '''
+
+
             AudioSource.trim_begin = trim_begin
             AudioSource.trim_end = trim_end
 
-            if trim_begin > 0 or trim_end > 0:
+            if trim_begin > 0 or trim_end < num_samples - 1:
                 temp_dict = {'FileName':obj.name, 'Path':obj.path}
                 modified_files_list.append = temp_dict #make a list of all modified files to be printed in a display to the user
-            '''
+
 
     if len(modified_files_list) > 0:
         print(modified_files_list)  # also think about adding file name + folder path + Wwise actor mixer structure path
