@@ -26,9 +26,10 @@ def main():
                 channels = 2
             else:
                 channels = 1
-            num_samples = int(data.size / channels)  # copied name looks sus?
+            num_samples = int(data.size / channels)
             trim_end = num_samples - 1
             trim_begin = 0
+
 
             #  FIGURE OUT HOW TO READ (data)
             #  DO I NEED TO CONVERT TO 32 bit to accurately make trim point
