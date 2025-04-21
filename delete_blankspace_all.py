@@ -36,6 +36,20 @@ def main():
             #  if 2 0s in a row then that is the trim point lol
             #  how to use PyWwise to set the trim_begin etc
 
+            prev_sample_value = 0
+
+            #TRIM BEGIN
+            for i in range(0, num_samples-1):
+                sample_value = convert_sample(data[i])  # copied garbage
+
+                if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
+                    trim_begin = data[i - 1]  # point to begin trim
+
+                prev_sample_value = sample_value
+
+            #TRIM END
+            for i in range()
+
 
             '''
             AudioSource.trim_begin = trim_begin
