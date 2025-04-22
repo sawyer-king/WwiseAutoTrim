@@ -39,25 +39,25 @@ def main():
             prev_sample_value = 0
 
             #TRIM BEGIN
-            for i in range(0, num_samples-1):
+            for i in range(0, num_samples - 1):
                 sample_value = convert_sample(data[i])  # copied garbage
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
-                    trim_begin = data[i - 1]  # point to begin trim
+                    trim_begin = i
 
                 prev_sample_value = sample_value
 
             #TRIM END
-            for j in range(trim_begin, num_samples - 1):
-                sample_value = convert_sample(data[j])
+            for i in range(num_samples - 1, trim_begin, - 1):
+                sample_value = convert_sample(data[i])
 
                 if (sample_value <= 0 and prev_sample_value >= 0) or (sample_value):
-                    trim_end = data[j]
+                    trim_end = i
 
                 prev_sample_value = sample_value
 
-            AudioSource.trim_begin = trim_begin
-            AudioSource.trim_end = trim_end
+            obj.trim_begin = trim_begin / samplerate
+            obj.trim_end = trim_end / samplerate
 
             if trim_begin > 0 or trim_end < num_samples - 1:
                 temp_dict = {'FileName': obj.name, 'Path': obj.path}
@@ -70,7 +70,7 @@ def main():
 
     # Add undo button to each changed file?
 
-    ak.wwise.core.undo.end_group("Delete Blankspace In All wav files")  # figure out where this display name is for
+    ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")  # figure out where this display name is for
 
     ak.disconnect()
 
