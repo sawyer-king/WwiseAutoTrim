@@ -14,7 +14,8 @@ def main():
     query = WaqlQuery() # maybe WaqlQuery().from_project().where("type = 'Sound'") ?????  see below
     query.from_project()  # This will  get every object in the Wwise project. see above
 
-    wwise_objects = ak.wwise.core.object.get(query)  # maybe try to get only audio files and not objects ? se line 12 https://www.audiokinetic.com/en/library/edge/?source=SDK&id=ak_wwise_core_object_get_example_searching_objects_of_a_certain_type.html
+    wwise_objects = ak.wwise.core.object.get(query)  # maybe try to get only audio files and not objects ? see line 12
+    # wwise_objects = ak.wwise.core.object.get(query, EReturnOptions.FILE_PATH)   IDK if this will be the solution
 
     ak.wwise.core.undo.begin_group()
 
