@@ -4,6 +4,20 @@ from pywwise import *
 from scipy.io import wavfile
 
 
+convert_sample_functions = {
+    "int16": lambda x: x / 32767,
+    "int32": lambda x: x / 2147483647,
+    "float32": lambda x: x
+}
+
+
+def convert_sample(sample):
+    converted_sample = convert_sample_functions[sample.dtype.name]
+    if len(converted_sample.shape) == 1:  # conversion for mono files
+        return converted_sample
+    return lambda a: converted_sample(a.max())  # conversion for any channel count other than mono
+
+
 def main():
     """Check all .wav files in use in the Wwise project for blank space at the beginning or end of the file and
     set trim points to remove that blank space.(FIX DOCUSTRING)"""
