@@ -26,6 +26,7 @@ def main():
                 channels = 2
             else:
                 channels = 1
+            # len(data.shape) = channels    #  Can I not just do this lol?
             num_samples = int(data.size / channels)
             trim_end = num_samples - 1
             trim_begin = 0
