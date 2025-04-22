@@ -6,7 +6,7 @@ from scipy.io import wavfile
 
 def main():
     """Check all .wav files in use in the Wwise project for blank space at the beginning or end of the file and
-    remove that blank space.(FIX DOCUSTRING)"""
+    set trim points to remove that blank space.(FIX DOCUSTRING)"""
     ak = new_waapi_connection()
 
     modified_files_list = []  # may give error idk if i have to declare this as a list of dictionaries?
@@ -30,12 +30,6 @@ def main():
             trim_end = num_samples - 1
             trim_begin = 0
 
-
-            #  FIGURE OUT HOW TO READ (data)
-            #  DO I NEED TO CONVERT TO 32 bit to accurately make trim point
-            #  if 2 0s in a row then that is the trim point lol
-            #  how to use PyWwise to set the trim_begin etc
-
             prev_sample_value = 0
 
             #TRIM BEGIN
@@ -51,7 +45,7 @@ def main():
             for i in range(num_samples - 1, trim_begin, - 1):
                 sample_value = convert_sample(data[i])
 
-                if (sample_value <= 0 and prev_sample_value >= 0) or (sample_value):
+                if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
                     trim_end = i
 
                 prev_sample_value = sample_value
