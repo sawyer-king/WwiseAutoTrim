@@ -48,17 +48,20 @@ def main():
                 prev_sample_value = sample_value
 
             #TRIM END
-            for i in range()
+            for j in range(trim_begin, num_samples - 1):
+                sample_value = convert_sample(data[j])
 
+                if (sample_value <= 0 and prev_sample_value >= 0) or (sample_value):
+                    trim_end = data[j]
 
-            '''
+                prev_sample_value = sample_value
+
             AudioSource.trim_begin = trim_begin
             AudioSource.trim_end = trim_end
 
             if trim_begin > 0 or trim_end < num_samples - 1:
                 temp_dict = {'FileName': obj.name, 'Path': obj.path}
                 modified_files_list.append = temp_dict  # make a list of all modified files to be printed in a display to the user
-            '''
 
     if len(modified_files_list) > 0:
         print(modified_files_list)  # also think about adding file name + folder path + Wwise actor mixer structure path
