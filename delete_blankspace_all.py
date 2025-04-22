@@ -11,15 +11,16 @@ def main():
 
     modified_files_list = []  # may give error idk if i have to declare this as a list of dictionaries?
 
-    query = WaqlQuery()
-    query.from_project()  # This will  get every object in the Wwise project.
+    query = WaqlQuery() # maybe WaqlQuery().from_project().where("type = 'Sound'") ?????  see below
+    query.from_project()  # This will  get every object in the Wwise project. see above
 
-    wwise_objects = ak.wwise.core.object.get(query)  # maybe try to get only audio files and not objects ?
+    wwise_objects = ak.wwise.core.object.get(query)  # maybe try to get only audio files and not objects ? se line 12 https://www.audiokinetic.com/en/library/edge/?source=SDK&id=ak_wwise_core_object_get_example_searching_objects_of_a_certain_type.html
 
     ak.wwise.core.undo.begin_group()
 
     for obj in wwise_objects:
         if obj.type == EObjectType.SOUND:
+            # obj.other[EReturnOptions.FILE_PATH] OR  file_path = obj.other.get(EReturnOptions.FILE_PATH) ?????
             samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")  # obj.path somehow?
             duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
             if len(data.shape) == 2:  # idk if this will always return 2 or not? might need more funcitonality than just 2 channel ie 5.1, 7.1 files

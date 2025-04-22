@@ -8,6 +8,11 @@ def main():
         remove that blank space."""
     ak = new_waapi_connection()
 
+    # idk if this stuff is right but
+    selected = ak.wwise.ui.getSelectedObjects
+    for obj in selected:
+        awdawd
+
     # stuff goes here.
 
     ak.wwise.core.undo.end_group("Delete Blankspace In Selected wav files")
