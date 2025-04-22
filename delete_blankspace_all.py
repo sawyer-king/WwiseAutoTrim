@@ -71,6 +71,7 @@ def main():
         print("No files were modified.")  # add some display for case where no files were changed
 
     # Add undo button to each changed file?
+    # button for add initial delay to match offset? added line above in if statement
 
     ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")  # figure out where this display name is for
 
