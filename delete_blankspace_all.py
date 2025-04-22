@@ -4,20 +4,6 @@ from pywwise import *
 from scipy.io import wavfile
 
 
-convert_sample_functions = {
-    "int16": lambda x: x / 32767,
-    "int32": lambda x: x / 2147483647,
-    "float32": lambda x: x
-}
-
-
-def convert_sample(sample):
-    converted_sample = convert_sample_functions[sample.dtype.name]
-    if len(converted_sample.shape) == 1:  # conversion for mono files
-        return converted_sample
-    return lambda a: converted_sample(a.max())  # conversion for any channel count other than mono
-
-
 def main():
     """Check all .wav files in use in the Wwise project for blank space at the beginning or end of the file and
     set trim points to remove that blank space.(FIX DOCUSTRING)"""
@@ -36,7 +22,7 @@ def main():
         if obj.type == EObjectType.SOUND:
             samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")  # obj.path somehow?
             duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
-            if len(data.shape) == 2:  # idk if this will always return 2 or not?
+            if len(data.shape) == 2:  # idk if this will always return 2 or not? might need more funcitonality than just 2 channel ie 5.1, 7.1 files
                 channels = 2
             else:
                 channels = 1
@@ -81,6 +67,20 @@ def main():
     ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")  # figure out where this display name is for
 
     ak.disconnect()
+
+
+def convert_sample(sample):
+    converted_sample = convert_sample_functions[sample.dtype.name]
+    if len(converted_sample.shape) == 1:  # conversion for mono files
+        return converted_sample
+    return lambda a: converted_sample(a.max())  # conversion for any channel count other than mono
+
+
+convert_sample_functions = {
+    "int16": lambda x: x / 32767,
+    "int32": lambda x: x / 2147483647,
+    "float32": lambda x: x
+}
 
 
 if __name__ == "__main__":
