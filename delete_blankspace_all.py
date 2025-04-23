@@ -33,6 +33,7 @@ def main():
             trim_end = num_samples - 1
             trim_begin = 0
 
+            convert_sample = convert_sample_function(data)
             prev_sample_value = 0
 
             #TRIM BEGIN
@@ -63,10 +64,12 @@ def main():
 
             if trim_begin > 0 or trim_end < num_samples - 1:
                 temp_dict = {'FileName': obj.name, 'Path': obj.path}
-                modified_files_list.append = temp_dict  # make a list of all modified files to be printed in a display to the user
+                modified_files_list.append(temp_dict)  # make a list of all modified files to be printed in a display to the user
 
     if len(modified_files_list) > 0:
-        print(modified_files_list)  # also think about adding file name + folder path + Wwise actor mixer structure path
+        print("Modified Files:")
+        for file in modified_files_list:
+            print(file)  # also think about adding file name + folder path + Wwise actor mixer structure path
     else:
         print("No files were modified.")  # add some display for case where no files were changed
 
@@ -78,9 +81,9 @@ def main():
     ak.disconnect()
 
 
-def convert_sample(sample):
+def convert_sample_function(sample):
     converted_sample = convert_sample_functions[sample.dtype.name]
-    if len(converted_sample.shape) == 1:  # conversion for mono files
+    if len(sample.shape) == 1:  # conversion for mono files
         return converted_sample
     return lambda a: converted_sample(a.max())  # conversion for any channel count other than mono
 
