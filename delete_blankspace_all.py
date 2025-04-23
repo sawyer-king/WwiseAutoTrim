@@ -56,6 +56,8 @@ def main():
 
             obj.trim_begin = trim_begin / samplerate
             obj.trim_end = trim_end / samplerate
+            print(f"{obj.name}Trim Begin: {trim_begin / samplerate}")  # testing debug print
+            print(f"{obj.name}Trim End: {trim_end / samplerate}")
 
             obj.fade_in_duration = 0.01  # im not sure what these values should be, probably the default OR very small fade?
             obj.fade_out_duration = 0.01
