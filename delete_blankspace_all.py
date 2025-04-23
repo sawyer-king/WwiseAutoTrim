@@ -30,8 +30,8 @@ def main():
                 channels = 1
             # len(data.shape) = channels    #  Can I not just do this lol?
             num_samples = int(data.size / channels)
-            trim_end = num_samples - 1
-            trim_begin = 0
+            trim_begin_pos = 0
+            trim_end_pos = num_samples - 1
 
             convert_sample = convert_sample_function(data)
             prev_sample_value = 0
@@ -41,25 +41,35 @@ def main():
                 sample_value = convert_sample(data[i])  # copied garbage
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
-                    trim_begin = i
+                    trim_begin_pos = i
                     break
 
                 prev_sample_value = sample_value
 
             #TRIM END
-            for i in range(num_samples - 1, trim_begin, - 1):
+            for i in range(num_samples - 1, trim_begin_pos, - 1):
                 sample_value = convert_sample(data[i])
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
-                    trim_end = i
+                    trim_end_pos = i
                     break
 
                 prev_sample_value = sample_value
 
-            obj.trim_begin = trim_begin / samplerate
-            obj.trim_end = trim_end / samplerate
+
+
+            # TODO add some way to get the SOUND obj SOURCE to set this stuff to
+
+            trim_begin = trim_begin_pos / samplerate
+            trim_end = trim_end_pos / samplerate
+            obj.trim_begin = trim_begin
+            obj.trim_end = trim_end
             print(f"{obj.name}Trim Begin: {obj.trim_begin}")  # testing debug print
             print(f"{obj.name}Trim End: {obj.trim_end}")
+            ak.wwise.core.object.set_property(obj.guid, trim_begin, (trim_begin_pos / samplerate))
+            ak.wwise.core.object.set_property(obj.guid, trim_end, (trim_end_pos / samplerate))
+            ak.wwise.core.object.set_property(obj.guid, "TrimBegin", trim_begin)
+
 
             obj.fade_in_duration = 0.01  # im not sure what these values should be, probably the default OR very small fade?
             obj.fade_out_duration = 0.01
