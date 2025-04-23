@@ -2,6 +2,7 @@ import tkinter as tk
 
 from pywwise import new_waapi_connection
 
+
 def main():
     root = tk.Tk()
 
