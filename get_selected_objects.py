@@ -16,6 +16,8 @@ def print_info(info: tuple[WwiseObjectInfo, ...]):
                 samplerate, data = wavfile.read(
                     f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")
                 print(f"Data Type: {data.dtype.name}")
+                file_path = obj.other.get(EReturnOptions.FILE_PATH)  # not working, returns none
+                print(f"File Path: {file_path}")
         print()  # Empty line, for formatting purposes.
 
 
