@@ -1,4 +1,5 @@
 from pywwise import *
+from scipy.io import wavfile
 
 
 def print_info(info: tuple[WwiseObjectInfo, ...]):
@@ -11,6 +12,10 @@ def print_info(info: tuple[WwiseObjectInfo, ...]):
         print(f"GUID: {obj.guid}")
         print(f"Type: {obj.type}")
         print(f"Path: {obj.path}")
+        if obj.type == EObjectType.SOUND:
+                samplerate, data = wavfile.read(
+                    f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")
+                print(f"Data Type: {data.dtype.name}")
         print()  # Empty line, for formatting purposes.
 
 
