@@ -42,6 +42,7 @@ def main():
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
                     trim_begin = i
+                    break
 
                 prev_sample_value = sample_value
 
@@ -51,13 +52,14 @@ def main():
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
                     trim_end = i
+                    break
 
                 prev_sample_value = sample_value
 
             obj.trim_begin = trim_begin / samplerate
             obj.trim_end = trim_end / samplerate
-            print(f"{obj.name}Trim Begin: {trim_begin / samplerate}")  # testing debug print
-            print(f"{obj.name}Trim End: {trim_end / samplerate}")
+            print(f"{obj.name}Trim Begin: {obj.trim_begin}")  # testing debug print
+            print(f"{obj.name}Trim End: {obj.trim_end}")
 
             obj.fade_in_duration = 0.01  # im not sure what these values should be, probably the default OR very small fade?
             obj.fade_out_duration = 0.01
