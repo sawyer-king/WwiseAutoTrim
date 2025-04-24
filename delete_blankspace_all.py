@@ -13,17 +13,18 @@ def main():
 
     #query = WaqlQuery()
     #query.from_project()  # This will  get every object in the Wwise project.
-    query = f"$ from type AudioFileSource" #TODO test this
+    query = f"$ from type AudioFileSource"
 
-    wwise_objects = ak.wwise.core.object.get(query, EReturnOptions.FILE_PATH) # source in sources?
+    wwise_objects = ak.wwise.core.object.get(query) # source in sources? EReturnOptions.FILE_PATH
+    print(wwise_objects)
 
     ak.wwise.core.undo.begin_group()
 
     for obj in wwise_objects:
         #if obj.type == EObjectType.SOUND:
         # obj.other[EReturnOptions.FILE_PATH] OR  file_path = obj.other.get(EReturnOptions.FILE_PATH) ?????
-        # f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav"
-        samplerate, data = wavfile.read(obj.other[EReturnOptions.FILE_PATH])
+        # f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav"    OR    obj.other[EReturnOptions.FILE_PATH]
+        samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")
         duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
         if len(data.shape) == 2:  # idk if this will always return 2 or not? might need more funcitonality than just 2 channel ie 5.1, 7.1 files
             channels = 2
@@ -58,30 +59,21 @@ def main():
 
             prev_sample_value = sample_value
 
-
-
-        # TODO add some way to get the SOUND obj SOURCE to set this stuff to, have source now maybe just need to pick the right option?
-
         trim_begin = trim_begin_pos / samplerate
         trim_end = trim_end_pos / samplerate
-        obj.trim_begin = trim_begin
-        obj.trim_end = trim_end
-        print(f"{obj.name}Trim Begin: {obj.trim_begin}")  # testing debug print
-        print(f"{obj.name}Trim End: {obj.trim_end}")
-        ak.wwise.core.object.set_property(obj.guid, trim_begin, (trim_begin_pos / samplerate))
-        ak.wwise.core.object.set_property(obj.guid, trim_end, (trim_end_pos / samplerate))
         ak.wwise.core.object.set_property(obj.guid, "TrimBegin", trim_begin)
+        ak.wwise.core.object.set_property(obj.guid, "TrimEnd", trim_end)
 
-
-        obj.fade_in_duration = 0.01  # im not sure what these values should be, probably the default OR very small fade?
-        obj.fade_out_duration = 0.01
+        ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)  # im not sure what these values should be, probably the default OR very small fade?
+        ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
 
         # obj.initial_delay = trim_begin / sample_rate    # can add initial delay to keep same sync if you want? maybe add a button for this like revert trims?
+        # ak.wwise.core.object.set_property(obj.guid, "InitialDelay", (trim_begin / sample_rate))  this has to be sound obj and not AudioFileSource
 
         if trim_begin > 0 or trim_end < num_samples - 1:
             temp_dict = {"FileName": obj.name,
-                         "WwiseProjectPath": obj.path,
-                         "FolderPath": obj.other[EReturnOptions.FILE_PATH]}
+                         "WwiseProjectPath": obj.path
+                         } # "FolderPath": obj.other[EReturnOptions.FILE_PATH]
             modified_files_list.append(temp_dict)  # make a list of all modified files to be printed in a display to the user
 
     if len(modified_files_list) > 0:

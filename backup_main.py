@@ -38,7 +38,7 @@ def main():
 
             #TRIM BEGIN
             for i in range(0, num_samples - 1):
-                sample_value = convert_sample(data[i])  # copied garbage
+                sample_value = convert_sample(data[i])
 
                 if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
                     trim_begin_pos = i
