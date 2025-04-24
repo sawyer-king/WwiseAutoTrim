@@ -79,9 +79,9 @@ def main():
         # obj.initial_delay = trim_begin / sample_rate    # can add initial delay to keep same sync if you want? maybe add a button for this like revert trims?
 
         if trim_begin > 0 or trim_end < num_samples - 1:
-            temp_dict = {'FileName': obj.name,
-                         'WwiseProjectPath': obj.path,
-                         'FolderPath': obj.other[EReturnOptions.FILE_PATH]}
+            temp_dict = {"FileName": obj.name,
+                         "WwiseProjectPath": obj.path,
+                         "FolderPath": obj.other[EReturnOptions.FILE_PATH]}
             modified_files_list.append(temp_dict)  # make a list of all modified files to be printed in a display to the user
 
     if len(modified_files_list) > 0:
