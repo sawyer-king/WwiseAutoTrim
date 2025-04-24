@@ -61,13 +61,13 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)  # im not sure what these values should be, probably the default OR very small fade?
         ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
 
-        # obj.initial_delay = trim_begin    # can add initial delay to keep same sync if you want? maybe add a button for this like revert trims?
-        # ak.wwise.core.object.set_property(obj.guid, "InitialDelay", trim_begin)  this has to be sound obj and not AudioFileSource
+        sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
+        ak.wwise.core.object.set_property(sound_parent.guid, "InitialDelay", trim_begin)
 
         if trim_begin > 0 or trim_end < num_samples - 1:
             temp_dict = {"FileName": obj.name,
-                         "WwiseProjectPath": obj.path
-                         } # "FolderPath": obj.other[EReturnOptions.FILE_PATH]
+                         "WwiseProjectPath": obj.path,
+                         "FolderPath": obj.other[EReturnOptions.ORIGINAL_FILE_PATH]}
             modified_files_list.append(temp_dict)  # make a list of all modified files to be printed in a display to the user
 
     if len(modified_files_list) > 0:
