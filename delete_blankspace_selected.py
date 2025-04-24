@@ -4,8 +4,9 @@ from pywwise import *
 
 
 def main():
-    """Check selected .wav files the Wwise project for blank space at the beginning or end of the file and
-        remove that blank space."""
+    """Check selected .wav files in use in the Wwise project for empty space at the beginning or end of the file and
+    set trim points to remove that empty space. Also includes a GUI component that gives the option to add
+    Initial Delay to the sound to keep the original sync offset."""
     ak = new_waapi_connection()
 
     # idk if this stuff is right but
