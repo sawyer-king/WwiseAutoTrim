@@ -20,8 +20,7 @@ def main():
 
     for obj in wwise_objects:
         samplerate, data = wavfile.read(obj.other[EReturnOptions.ORIGINAL_FILE_PATH])
-        duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
-        channels = data.shape[1]     #  Can I not just do this lol?
+        channels = data.shape[1]
         num_samples = int(data.size / channels)
         trim_begin_pos = 0
         trim_end_pos = num_samples - 1
@@ -29,22 +28,21 @@ def main():
         convert_sample = convert_sample_function(data)
         prev_sample_value = 0
 
-        #TODO do trims need abs (absolute) value check?
-        #TRIM BEGIN
+        # TRIM BEGIN
         for i in range(0, num_samples - 1):
             sample_value = convert_sample(data[i])
 
-            if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
+            if (abs(sample_value) > 0 >= abs(prev_sample_value)) or (abs(sample_value) < 0 <= abs(prev_sample_value)):
                 trim_begin_pos = i
                 break
 
             prev_sample_value = sample_value
 
-        #TRIM END
+        # TRIM END
         for i in range(num_samples - 1, trim_begin_pos, - 1):
             sample_value = convert_sample(data[i])
 
-            if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
+            if (abs(sample_value) > 0 >= abs(prev_sample_value)) or (abs(sample_value) < 0 <= abs(prev_sample_value)):
                 trim_end_pos = i
                 break
 
