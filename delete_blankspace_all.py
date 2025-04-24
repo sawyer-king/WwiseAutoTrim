@@ -20,11 +20,7 @@ def main():
     for obj in wwise_objects:
         samplerate, data = wavfile.read(obj.other[EReturnOptions.ORIGINAL_FILE_PATH])
         duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
-        if len(data.shape) == 2:  # idk if this will always return 2 or not? might need more funcitonality than just 2 channel ie 5.1, 7.1 files
-            channels = 2
-        else:
-            channels = 1
-        # len(data.shape) = channels    #  Can I not just do this lol?
+        channels = data.shape[1]     #  Can I not just do this lol?
         num_samples = int(data.size / channels)
         trim_begin_pos = 0
         trim_end_pos = num_samples - 1
@@ -61,8 +57,9 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)  # im not sure what these values should be, probably the default OR very small fade?
         ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
 
-        sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
-        ak.wwise.core.object.set_property(sound_parent.guid, "InitialDelay", trim_begin)
+        # INITIAL DELAY
+        # sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
+        # ak.wwise.core.object.set_property(sound_parent.guid, "InitialDelay", trim_begin)
 
         if trim_begin > 0 or trim_end < num_samples - 1:
             temp_dict = {"FileName": obj.name,
