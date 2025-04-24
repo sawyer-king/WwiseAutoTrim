@@ -9,14 +9,9 @@ A script used to automatically set trim points on all Audio Source Files in a Ww
 This package requires Python, Wwise, WAAPI, PyWwise, and scripy.io to be installed.
 ```
 
-## How It's Made:
-
-
-## Usage:
-
-
 ## Modules:
-
+auto_trim_all.py
+ - Queries the Wwise project for all Audio File Sources, then checks to see if there is any space with no audio in the wav file, then sets trims points to the sample accurate position where audio begins.
 
 ## Additonal Features
 Current version has commented out funcitonality for setting InitialDelay offset to keep original sync, can easily remove comments if you need that functionality. Looking to add GUI options for this in the next version.
