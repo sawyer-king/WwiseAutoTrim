@@ -19,6 +19,6 @@ Current version has commented out funcitonality for setting InitialDelay offset 
 ## Examples, Additional Documentation:
 Take a look at the PyWwise Wiki, and WAAPI docs for more examples and documentation:
 
-**PyWwise Wiki:** [https://github.com/alecortega/palettable](https://github.com/matheusvilano/PyWwise/wiki)
+**PyWwise Wiki:** [https://github.com/matheusvilano/PyWwise/wiki](https://github.com/matheusvilano/PyWwise/wiki)
 
-**WAAPI Documentation:** [https://github.com/alecortega/twitter-battle](https://www.audiokinetic.com/en/public-library/2024.1.4_8780/?source=SDK&id=waapi.html)
+**WAAPI Documentation:** [https://www.audiokinetic.com/en/public-library/2024.1.4_8780/?source=SDK&id=waapi.html](https://www.audiokinetic.com/en/public-library/2024.1.4_8780/?source=SDK&id=waapi.html)
