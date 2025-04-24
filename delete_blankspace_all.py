@@ -21,8 +21,6 @@ def main():
     ak.wwise.core.undo.begin_group()
 
     for obj in wwise_objects:
-        #if obj.type == EObjectType.SOUND:
-        # obj.other[EReturnOptions.FILE_PATH] OR  file_path = obj.other.get(EReturnOptions.FILE_PATH) ?????
         # f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav"    OR    obj.other[EReturnOptions.FILE_PATH]
         samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")
         duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
@@ -41,7 +39,7 @@ def main():
         #TODO do trims need abs (absolute) value check?
         #TRIM BEGIN
         for i in range(0, num_samples - 1):
-            sample_value = convert_sample(data[i])  # copied garbage
+            sample_value = convert_sample(data[i])
 
             if (sample_value > 0 and prev_sample_value <= 0) or (sample_value < 0 and prev_sample_value >= 0):
                 trim_begin_pos = i
