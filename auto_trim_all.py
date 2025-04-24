@@ -53,7 +53,7 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "TrimBegin", trim_begin)
         ak.wwise.core.object.set_property(obj.guid, "TrimEnd", trim_end)
 
-        ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)  # im not sure what these values should be, probably the default OR very small fade?
+        ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)
         ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
 
         # INITIAL DELAY
@@ -69,14 +69,14 @@ def main():
     if len(modified_files_list) > 0:
         print("Modified Files:")
         for file in modified_files_list:
-            print(file)  # also think about adding file name + folder path + Wwise actor mixer structure path
+            print(file)
     else:
-        print("No files were modified.")  # add some display for case where no files were changed
+        print("No files were modified.")
 
     # Add undo button to each changed file?
-    # button for add initial delay to match offset? added line above in if statement
+    # button for add initial delay to match offset?
 
-    ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")  # figure out where this display name is for
+    ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")
 
     ak.disconnect()
 
