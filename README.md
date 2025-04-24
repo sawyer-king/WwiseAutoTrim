@@ -3,22 +3,16 @@
 
 A script used to automatically set trim points on all Audio Source Files in a Wwise project.
 ```
-This package requires Wwise and PyWwise to be installed.
+This package requires Wwise, PyWwise, and scripy.io to be installed.
 ```
 
 ## System Requirements
-Wwise Version XXXXXXX
-Python Version XXXXX
-PyWwise Version XXX
+Wwise Version 2024.1.2
+Python Version 3.12
+PyWwise Version Beta 2.3
 
 ## Installation
 Use the Package Manager and use Add package from git URL, using the following: 
 ```
 https://github.com/sawyer-king/WwiseAutoTrim
 ```
-
-## Usage
-The following functions are included in this script.
-
-### Things it can do
-Use 
