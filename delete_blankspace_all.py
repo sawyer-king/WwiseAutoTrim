@@ -11,18 +11,14 @@ def main():
 
     modified_files_list = []
 
-    #query = WaqlQuery()
-    #query.from_project()  # This will  get every object in the Wwise project.
     query = f"$ from type AudioFileSource"
 
-    wwise_objects = ak.wwise.core.object.get(query) # source in sources? EReturnOptions.FILE_PATH
-    print(wwise_objects)
+    wwise_objects = ak.wwise.core.object.get(query, (EReturnOptions.ORIGINAL_FILE_PATH,))
 
     ak.wwise.core.undo.begin_group()
 
     for obj in wwise_objects:
-        # f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav"    OR    obj.other[EReturnOptions.FILE_PATH]
-        samplerate, data = wavfile.read(f"C:/Users/sawya/Documents/WwiseProjects/ToolTesting/Originals/SFX/{obj.name}.wav")
+        samplerate, data = wavfile.read(obj.other[EReturnOptions.ORIGINAL_FILE_PATH])
         duration = data.shape[0] / samplerate  # not sure that I need this? does duration get used?
         if len(data.shape) == 2:  # idk if this will always return 2 or not? might need more funcitonality than just 2 channel ie 5.1, 7.1 files
             channels = 2
