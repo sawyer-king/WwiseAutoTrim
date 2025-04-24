@@ -65,8 +65,8 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)  # im not sure what these values should be, probably the default OR very small fade?
         ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
 
-        # obj.initial_delay = trim_begin / sample_rate    # can add initial delay to keep same sync if you want? maybe add a button for this like revert trims?
-        # ak.wwise.core.object.set_property(obj.guid, "InitialDelay", (trim_begin / sample_rate))  this has to be sound obj and not AudioFileSource
+        # obj.initial_delay = trim_begin    # can add initial delay to keep same sync if you want? maybe add a button for this like revert trims?
+        # ak.wwise.core.object.set_property(obj.guid, "InitialDelay", trim_begin)  this has to be sound obj and not AudioFileSource
 
         if trim_begin > 0 or trim_end < num_samples - 1:
             temp_dict = {"FileName": obj.name,
