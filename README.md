@@ -1,7 +1,7 @@
 # Wwise Auto Trim
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE.md)
 
-A script used to automatically set trim points on all Audio Source Files in a Wwise project.
+A script used to automatically detect empty space and set trim points on all Audio Source Files in a Wwise project.
 
 **Link to project:** [https://github.com/sawyer-king/WwiseAutoTrim/](https://github.com/sawyer-king/WwiseAutoTrim)
 
