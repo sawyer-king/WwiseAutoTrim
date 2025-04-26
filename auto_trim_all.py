@@ -1,4 +1,4 @@
-# Copyright 2025 Sawyer King
+# Copyright (c) 2025 Sawyer King. <sawyer.audio@gmail.com>.
 
 from pywwise import *
 from scipy.io import wavfile
