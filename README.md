@@ -1,5 +1,5 @@
 # Wwise Auto Trim
-[![Wwise 2023.1.1+]((https://img.shields.io/badge/wwise-2023.1%2B-blue.svq))](https://www.audiokinetic.com/en/download/)
+[![Wwise 2023.1.1+]((https://img.shields.io/badge/wwise-2023.1%2B-blue.svg))](https://www.audiokinetic.com/en/download/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE.md)
 
 A script used to automatically detect empty space and set trim points on all Audio Source Files in a Wwise project.
