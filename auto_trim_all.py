@@ -53,8 +53,8 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "TrimBegin", trim_begin)
         ak.wwise.core.object.set_property(obj.guid, "TrimEnd", trim_end)
 
-        ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.01)
-        ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.01)
+        ak.wwise.core.object.set_property(obj.guid, "FadeInDuration", 0.001)
+        ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.001)
 
         # INITIAL DELAY
         # sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
