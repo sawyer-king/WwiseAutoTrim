@@ -76,7 +76,7 @@ def main():
     # Add undo button to each changed file?
     # button for add initial delay to match offset?
 
-    ak.wwise.core.undo.end_group("Set Trim Begin and End points based on empty space In All wav files")
+    ak.wwise.core.undo.end_group("Auto Trim All")
 
     ak.disconnect()
 
