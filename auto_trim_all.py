@@ -6,7 +6,7 @@ from scipy.io import wavfile
 
 def main():
     """Check all .wav files in use in the Wwise project for empty space at the beginning or end of the file and
-    set trim points to remove that empty space. Also includes the option to add Initial Delay to the sound to keep
+    set trim points to remove that empty space. Also adds an Initial Delay to the sound to keep
     the original sync offset."""
     ak = new_waapi_connection()
 
@@ -57,8 +57,8 @@ def main():
         ak.wwise.core.object.set_property(obj.guid, "FadeOutDuration", 0.001)
 
         # INITIAL DELAY
-        # sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
-        # ak.wwise.core.object.set_property(sound_parent.guid, "InitialDelay", trim_begin)
+        sound_parent = ak.wwise.core.object.get(f"$ from object \"{obj.guid}\" select parent")[0]
+        ak.wwise.core.object.set_property(sound_parent.guid, "InitialDelay", trim_begin)
 
         if trim_begin > 0 or trim_end < num_samples - 1:
             temp_dict = {"FileName": obj.name,
@@ -73,8 +73,6 @@ def main():
     else:
         print("No files were modified.")
 
-    # Add undo button to each changed file?
-    # button for add initial delay to match offset?
 
     ak.wwise.core.undo.end_group("Auto Trim All")
 
