@@ -15,7 +15,7 @@ auto_trim_all.py
  - Queries the Wwise project for all Audio File Sources, then checks to see if there is any space with no audio in the wav file, then sets trims points to the sample accurate position where audio begins.
 
 ## Additonal Features
-Current version has commented out funcitonality for setting InitialDelay offset to keep original sync, can easily remove comments if you need that functionality. Looking to add GUI options for this in the next version.
+Current version adds an InitialDelay offset to keep original sync, can easily remove with comments if you do not want/need that functionality. Looking to add GUI options for this in the next version.
 
 ## Examples, Additional Documentation:
 Take a look at the PyWwise Wiki, and WAAPI docs for more examples and documentation:
