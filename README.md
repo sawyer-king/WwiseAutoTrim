@@ -11,7 +11,7 @@ This script requires Python, Wwise, WAAPI, PyWwise, and scripy.io to be installe
 ```
 
 ## Modules:
-auto_trim_all.py
+`auto_trim_all.py`
  - Queries the Wwise project for all Audio File Sources, then checks to see if there is any space with no audio in the wav file, then sets trims points to the sample accurate position where audio begins.
 
 ## Additonal Features
